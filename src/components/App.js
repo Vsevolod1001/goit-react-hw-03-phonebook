@@ -14,6 +14,19 @@ class App extends Component{
       ],
       filter: '',    
   }
+  componentDidMount() {
+    const contacts = localStorage.getItem('contacts');
+    const parsedContacts = JSON.parse(contacts);
+    if (parsedContacts) {
+      this.setState({contacts: parsedContacts});
+    }
+  }
+  componentDidUpdate(prevProps, prevState) {
+    if (this.state.contacts !== prevState.contacts) {
+      localStorage.setItem('contacts', JSON.stringify(this.state.contacts))
+    }
+
+  }
   deleteContact = (contactId) => {
     this.setState(prevState => ({
       contacts: prevState.contacts.filter(contact => contact.id !== contactId),
@@ -31,22 +44,7 @@ class App extends Component{
         contacts: [newCard, ...contacts],
       }))
     }
-    // this.setState(prevState => {
-    //   if (prevState.contacts.find(contact => contact.name === name)) {
-    //     alert(`${name} is already in the contacts`);
-    //     return;
-    //   }
-    // })
-    
-    // const contact = {
-    //   id: shortid.generate(),
-    //   name,
-    //   number
-      
-    // };
-    // this.setState(({contacts}) => ({
-    //   contacts: [contact, ...contacts],
-    // }))
+
   }
   chandeFilter = (e) => {
     this.setState({filter: e.currentTarget.value})

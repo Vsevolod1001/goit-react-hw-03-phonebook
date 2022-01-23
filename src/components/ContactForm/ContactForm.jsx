@@ -19,8 +19,7 @@ class ContactForm extends Component{
 
     render() {
         return(
-            <formDiv>
-                <div>Хуета</div>
+            <formDiv>                
                 <ContactFormCard            
                 onSubmit={this.handleSubmit}>
                     <ContactLable> Name: 
