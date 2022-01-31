@@ -1,8 +1,12 @@
 import React, {Component} from "react";
 import PropTypes from "prop-types";
+// eslint-disable-next-line no-unused-vars
 import {ContactLable, ContactFormCard, formDiv, FormBtn } from './ContactForm.styled'
 
 class ContactForm extends Component{
+    static propTypes = {
+        onSubmit: PropTypes.func.isRequired,
+     }
     state = {        
         name: '',
         number: ''
@@ -55,7 +59,5 @@ class ContactForm extends Component{
         );
     }
 }
-ContactForm.propTypes = {
-   onSubmit: PropTypes.func.isRequired,
-}
+
 export default ContactForm
